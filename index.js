@@ -1,7 +1,44 @@
-const http = require("http");
-const app = require("./app");
+const { createServer } = require("http");
 
-const server = http.createServer(app);
+
+
+require("dotenv").config();
+const db = require("./services/db.js");
+
+const express = require("express");
+const verifyUser = require("./middleware/auth.middleware.js")
+
+const app = express();
+
+app.use(express.json());
+
+
+
+const authRouter = require( "./routes/auth.cjs");
+const authBoards = require( "./routes/board.js");
+
+
+
+// Connect DB
+db.connect();
+
+
+app.use("/api/auth", authRouter);
+app.use("/api", verifyUser ,authBoards);
+
+app.use("/test", (req, res) => {
+  res.send("Server Working!!!")
+})
+
+app.all("*", (req, res) => {
+  res.status(404).send("nicht gefunden!!!");
+ 
+})
+
+
+
+
+const server = createServer(app);
 
 
 const port = process.env.PORT || 3000;

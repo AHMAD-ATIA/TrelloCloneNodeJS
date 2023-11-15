@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const BlacklistedToken = require("../model/blacklist");
+// const BlacklistedToken = require("../model/blacklist");
 const config = process.env;
 
 const verifyToken = async (req, res, next) => {
@@ -22,14 +22,7 @@ const verifyToken = async (req, res, next) => {
         });
     }
 
-    const isBlacklisted = await BlacklistedToken.findeOne({token});
-    if(isBlacklisted){
-        return res.status(401).send({
-            message: "nicht authentifizeirt"
 
-        });
-
-    }
 
     return next();
 
