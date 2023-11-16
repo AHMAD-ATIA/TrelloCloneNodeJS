@@ -15,7 +15,11 @@ app.use(express.json());
 
 
 const authRouter = require( "./routes/auth.cjs");
-const authBoards = require( "./routes/board.js");
+const BoardController = require( "./routes/board.js");
+const CardController = require("./routes/card.js");
+const ListController = require("./routes/list.js");
+
+
 
 
 
@@ -24,7 +28,11 @@ db.connect();
 
 
 app.use("/api/auth", authRouter);
-app.use("/api", verifyUser ,authBoards);
+app.use("/api", verifyUser , BoardController);
+app.use("/api" , verifyUser, CardController);
+app.use("/api/", verifyUser, ListController);
+
+
 
 app.use("/test", (req, res) => {
   res.send("Server Working!!!")
