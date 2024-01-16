@@ -1,10 +1,12 @@
 const express = require("express")
 
-const { getAllCards } = require("../controllers/card.controller");
+const { getAllCards, updateCard, deleteCard } = require("../controllers/card.controller");
 
 const router = express.Router();
 
 router.get("/getAllCards", getAllCards);
+router.put("/updateCard", updateCard);
+router.delete("/deleteCard", deleteCard);
 
 
 module.exports = router;

@@ -164,8 +164,6 @@ const updateBoard = async(req, res) => {
 
     const url = `https://api.trello.com/1/boards/${req.query.id}?key=${API_KEY}&token=${TOKEN_KEY}`;
     const data = {
-        key: API_KEY,
-        token: TOKEN_KEY,
         name: req.query.name,
         desc: req.query.desc
     }

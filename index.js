@@ -30,7 +30,7 @@ db.connect();
 app.use("/api/auth", authRouter);
 app.use("/api", verifyUser , BoardController);
 app.use("/api" , verifyUser, CardController);
-app.use("/api/", verifyUser, ListController);
+app.use("/api", verifyUser, ListController);
 
 
 
